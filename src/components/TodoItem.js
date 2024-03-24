@@ -5,7 +5,13 @@ import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
-function TodoItem({ todo, handleDelete, handleSave, handleComplete }) {
+function TodoItem({
+  todo,
+
+  handleDelete,
+  handleSave,
+  handleComplete,
+}) {
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(todo.title);
 
@@ -17,6 +23,10 @@ function TodoItem({ todo, handleDelete, handleSave, handleComplete }) {
     handleSave(todo.id, newTitle);
     setIsEditing(false);
   };
+
+  // const handleSliderChange = (event) => {
+  //   setTodoList({ ...todo, Level: event.target.value });
+  // };
 
   return (
     <div
@@ -46,7 +56,7 @@ function TodoItem({ todo, handleDelete, handleSave, handleComplete }) {
       <div>
         <Timer />
       </div>
-      <div className="w-56">
+      <div className="w-56 flex gap-5">
         <select
           className="rounded-3xl w-56 pl-4 text-2xl h-10 flex justify-center items-center bg-lime-100 text-black"
           name="users"
@@ -58,6 +68,10 @@ function TodoItem({ todo, handleDelete, handleSave, handleComplete }) {
             </option>
           ))}
         </select>
+        <div className="flex gap-3">
+          <label className="text-2xl">{todo.level}</label>
+          <input type="range" min="1" max="10" step="1" value={todo.Level} />
+        </div>
       </div>
       <div className="text-white flex justify-around items-center w-40">
         {isEditing ? (

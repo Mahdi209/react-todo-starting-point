@@ -48,7 +48,7 @@ function TodoList({ todoData }) {
     );
   };
 
-  const completedTodo = todoList.filter((todo) => todo.done);
+  const completedTodo = todoList.map((todo) => todo.done);
 
   return (
     <div className="mx-24 flex flex-col gap-3 items-center">
@@ -78,7 +78,8 @@ function TodoList({ todoData }) {
           todo={todo}
           handleDelete={handleDelete}
           handleSave={handleSave}
-          handleComplete={handleComplete} // Pass handleComplete function
+          handleComplete={handleComplete}
+          // Pass handleComplete function
         />
       ))}
       <DoneItems completedTodo={completedTodo} />
