@@ -14,19 +14,20 @@ function TodoItem({
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(todo.title);
+  const [newLevel, setNewLevel] = useState(todo.title);
 
   const handleChangeTitle = (event) => {
     setNewTitle(event.target.value);
   };
 
   const handleOnSave = () => {
-    handleSave(todo.id, newTitle);
+    handleSave(todo.id, newTitle, newLevel);
     setIsEditing(false);
   };
 
-  // const handleSliderChange = (event) => {
-  //   setTodoList({ ...todo, Level: event.target.value });
-  // };
+  const handleSliderChange = (event) => {
+    setNewLevel(event.target.value);
+  };
 
   return (
     <div
@@ -69,8 +70,16 @@ function TodoItem({
           ))}
         </select>
         <div className="flex gap-3">
+          <input
+            type="range"
+            min="1"
+            max="10"
+            step="1"
+            value={todo.Level}
+            onChange={handleSliderChange}
+            required
+          />
           <label className="text-2xl">{todo.level}</label>
-          <input type="range" min="1" max="10" step="1" value={todo.Level} />
         </div>
       </div>
       <div className="text-white flex justify-around items-center w-40">
