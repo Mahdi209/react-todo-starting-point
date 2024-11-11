@@ -1,3 +1,100 @@
+/* Import fonts */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap");
+
+/* Base styles */
+:root {
+  --font-primary: "Outfit", system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+}
+
+/* Apply fonts */
+html {
+  font-family: var(--font-primary);
+  scroll-behavior: smooth;
+}
+
 body {
-  background-color: rgb(57, 121, 129);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "cv11", "salt", "ss01", "ss03";
+}
+
+/* Typography enhancements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c7d2fe;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #818cf8;
+}
+
+/* Form elements */
+input,
+select,
+textarea {
+  font-family: var(--font-primary);
+}
+
+/* Remove number input arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Selection styling */
+::selection {
+  background: #818cf8;
+  color: white;
+}
+
+/* Placeholder styling */
+::placeholder {
+  color: #94a3b8;
+  opacity: 1;
+}
+
+/* Focus outline */
+:focus {
+  outline: 2px solid #818cf8;
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Smooth transitions */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    opacity 0.2s ease;
 }

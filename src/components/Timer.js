@@ -14,8 +14,7 @@ export default function Timer() {
       let { total, minutes, seconds } = getTimeRemaining(endTime);
       if (total >= 0) {
         setTimer(
-          `${minutes > 9 ? minutes : "0" + minutes}:${
-            seconds > 9 ? seconds : "0" + seconds
+          `${minutes > 9 ? minutes : "0" + minutes}:${seconds > 9 ? seconds : "0" + seconds
           }`
         );
       } else {
@@ -57,24 +56,101 @@ export default function Timer() {
   }, [timer]);
 
   return (
-    <div className="flex gap-5">
+    <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
       {isClick ? (
-        <h2 className="w-28">{timer}</h2>
+        <div className="flex items-center gap-2">
+          <svg
+            className="w-5 h-5 text-indigo-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <h2 className="font-mono text-xl font-semibold text-indigo-900 
+                         min-w-[80px] text-center">
+            {timer}
+          </h2>
+        </div>
       ) : (
-        <div className="flex gap-3">
-          <input
-            className="w-24 text-black rounded-2xl border-none pl-9"
-            type="number"
-            value={minutes}
-            onChange={handleInputChange}
-            placeholder="M"
-          />
-          <button onClick={handleStart}>Start</button>
+        <div className="flex items-center gap-2">
+          <div className="relative">
+            <input
+              className="w-20 sm:w-24 px-3 py-2 text-center
+                         border-2 border-indigo-200 rounded-lg
+                         focus:outline-none focus:border-indigo-400 
+                         focus:ring-2 focus:ring-indigo-200
+                         text-indigo-900 placeholder-indigo-300"
+              type="number"
+              min="1"
+              max="120"
+              value={minutes}
+              onChange={handleInputChange}
+              placeholder="Min"
+            />
+            <span className="absolute right-3 top-1/2 -translate-y-1/2 
+                            text-sm text-indigo-400">
+              min
+            </span>
+          </div>
+          <button
+            onClick={handleStart}
+            className="px-4 py-2 bg-indigo-500 text-white rounded-lg
+                       hover:bg-indigo-600 active:bg-indigo-700
+                       transition-colors duration-200
+                       flex items-center gap-2 whitespace-nowrap"
+          >
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span className="hidden sm:inline">Start</span>
+          </button>
         </div>
       )}
-      <audio src="../timer.mp3"></audio>
-      {errorMessage && <p className="text-red-500">{errorMessage}</p>}{" "}
-      {/* Show error message if it exists */}
+
+      <audio src="../timer.mp3" />
+
+      {errorMessage && (
+        <div className="absolute left-0 -bottom-6 w-full">
+          <p className="text-rose-500 text-sm flex items-center gap-1">
+            <svg
+              className="w-4 h-4 flex-shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>{errorMessage}</span>
+          </p>
+        </div>
+      )}
     </div>
   );
 }
